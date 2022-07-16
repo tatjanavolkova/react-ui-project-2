@@ -6,26 +6,30 @@ import {
     devices,
     fontSizes,
     margins,
+    paddings,
     zIndexes,
 } from "../../theme/theme";
 import logoImage from "../../assets/logo-128.svg";
 import menuIcon from "../../assets/icons/icon-menu.svg";
-import plusIcon from "../../assets/icons/icon-plus.svg";
 import userIcon from "../../assets/icons/icon-person.svg";
+import searchIcon from "../../assets/icons/icon-search.svg";
+import heartIcon from "../../assets/icons/icon-heart-empty.svg";
+import bagIcon from "../../assets/icons/icon-bag-empty.svg";
 
 const StyledNav = styled.header`
-  border: 1px solid #ff0ff0;
   width: 100%;
   height: 4rem; //64px
   position: absolute;
   top: 0;
   box-sizing: border-box;
+  background: ${colors.bg};
+  padding: ${paddings.sm};
+  box-shadow: -3px 0px 12px -5px ${colors.shadow};
 `;
 
 const BurgerBtn = styled.button`
-  width: 3rem;
-  height: 3rem;
-  margin: ${margins.xs};
+  width: 2rem;
+  height: 2rem;
   float: left;
   background: url(${menuIcon}) center no-repeat;
 
@@ -34,20 +38,29 @@ const BurgerBtn = styled.button`
   }
 `;
 
-const Logo = styled.div`
-  width: 3rem;
-  height: 3rem;
+const NavActionWrapper = styled.div`
+  height: 100%;
+  float: right;
+`
+
+const StyledLink = styled(Link) <{ icon: string }>`
   display: inline-block;
-  margin: ${margins.xs};
-  float: left;
-  background: url(${logoImage}) center/contain no-repeat ${colors.lightBlue};
-`;
+  width: 2rem;
+  height: 2rem;
+  margin-left: ${margins.sm};
+  background: url(${(props) => props && props.icon}) center/contain no-repeat;
+`
 
 const Nav = () => {
     return (
         <StyledNav>
             <BurgerBtn onClick={(): void => { }} />
-            <Logo />
+            <StyledLink to="/" icon={logoImage} />
+            <NavActionWrapper>
+                <StyledLink as="div" onClick={(): void => { }} icon={userIcon} />
+                <StyledLink to="/wishlist" icon={heartIcon} />
+                <StyledLink to="/cart" icon={bagIcon} />
+            </NavActionWrapper>
         </StyledNav>
     );
 };

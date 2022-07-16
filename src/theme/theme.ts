@@ -3,6 +3,7 @@ export const colors = {
   darkBlue: "#112D4E",
   lightBlue: "#DBE2EF",
   error: "#ff6347",
+  shadow: "#1c1c1c",
 };
 
 export const fontSizes = {
