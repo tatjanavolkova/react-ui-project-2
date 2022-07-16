@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Nav from "./components/Nav/Nav";
 import GlobalStyle from "./GlobalStyle";
 
 const App: React.FC = () => {
@@ -6,6 +7,7 @@ const App: React.FC = () => {
     <>
       <GlobalStyle />
       <BrowserRouter>
+        <Nav />
         <Routes>
           <Route path="/" element={<div>home page</div>} />
           <Route path="/cart" element={<div>shopping cart</div>} />
