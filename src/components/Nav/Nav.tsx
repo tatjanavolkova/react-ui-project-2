@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import {
   colors,
   devices,
+  fontSizes,
   margins,
   paddings,
   zIndexes,
@@ -55,6 +56,8 @@ const StyledLink = styled(Link) <{ icon: string }>`
 
 const SearchFieldWrapper = styled.div`
   position: relative;
+  min-width: 2rem;
+  min-height: 2rem;
 
   &::before {
     content: "";
@@ -82,20 +85,65 @@ const SearchField = styled.input`
   }  
 `;
 
-const Nav = () => {
+const CategoryMenu = styled.div`
+  display: none;
+  width: 100%;
+  height: 2rem;
+  position: absolute;
+  top: 4rem;
+  justify-content: center;
+  background: ${colors.lightBlue};
+  box-shadow: -3px 3px 5px -5px ${colors.shadow};
+
+  ${devices.tablet} {
+    display: flex;
+  }
+`;
+
+const CategoryLink = styled(Link)`
+  width: 8rem;
+  height: 100%;
+  border-right: 1px solid ${colors.bg};
+  text-decoration: none;
+  color: ${colors.darkBlue};
+  font-size: ${fontSizes.xs};
+  text-align: center;
+  line-height: 2rem;
+  text-transform: uppercase;
+
+  &:nth-child(1) {
+    border-left: 1px solid ${colors.bg};
+  }
+  
+  &:hover {
+    opacity: 0.6;
+  }
+`;
+
+const Nav: React.FC = () => {
   return (
-    <StyledNav>
-      <BurgerBtn onClick={(): void => { }} />
-      <StyledLink to="/" icon={logoImage} />
-      <NavActionWrapper>
-        <SearchFieldWrapper>
-          <SearchField type="text" />
-        </SearchFieldWrapper>
-        <StyledLink as="div" onClick={(): void => { }} icon={userIcon} />
-        <StyledLink to="/wishlist" icon={heartIcon} />
-        <StyledLink to="/cart" icon={bagIcon} />
-      </NavActionWrapper>
-    </StyledNav>
+    <>
+      <StyledNav>
+        <BurgerBtn onClick={(): void => { }} />
+        <StyledLink to="/" icon={logoImage} />
+        <NavActionWrapper>
+          <SearchFieldWrapper>
+            <SearchField type="text" />
+          </SearchFieldWrapper>
+          <StyledLink as="div" onClick={(): void => { }} icon={userIcon} />
+          <StyledLink to="/wishlist" icon={heartIcon} />
+          <StyledLink to="/cart" icon={bagIcon} />
+        </NavActionWrapper>
+      </StyledNav>
+      <CategoryMenu>
+        <CategoryLink to="/">categoryname</CategoryLink>
+        <CategoryLink to="/">categoryname</CategoryLink>
+        <CategoryLink to="/">categoryname</CategoryLink>
+        <CategoryLink to="/">categoryname</CategoryLink>
+        <CategoryLink to="/">categoryname</CategoryLink>
+        <CategoryLink to="/">categoryname</CategoryLink>
+      </CategoryMenu>
+    </>
   );
 };
 

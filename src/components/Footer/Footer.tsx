@@ -27,7 +27,7 @@ const Icon = styled.a`
   }
 `;
 
-const Footer = () => {
+const Footer: React.FC = () => {
     return (
         <StyledFooter>
             <Icons>
