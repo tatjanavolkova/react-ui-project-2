@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Nav from "./components/Nav/Nav";
+import Footer from "./components/Footer/Footer";
 import GlobalStyle from "./GlobalStyle";
 
 const App: React.FC = () => {
@@ -16,6 +17,7 @@ const App: React.FC = () => {
           <Route path="/product" element={<div>product page</div>} />
           <Route path="/*" element={<div>404 page</div>} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   )
