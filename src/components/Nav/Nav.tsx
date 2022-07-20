@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
 
 import {
   colors,
@@ -15,6 +16,7 @@ import userIcon from "../../assets/icons/icon-person.svg";
 import searchIcon from "../../assets/icons/icon-search.svg";
 import heartIcon from "../../assets/icons/icon-heart-empty.svg";
 import bagIcon from "../../assets/icons/icon-bag-empty.svg";
+import SideBarContext from "../../context/SideBarContext";
 
 const StyledNav = styled.header`
   width: 100%;
@@ -121,10 +123,12 @@ const CategoryLink = styled(Link)`
 `;
 
 const Nav: React.FC = () => {
+  const { isSideBarOpen, setIsSideBarOpen } = useContext(SideBarContext);
+
   return (
     <>
       <StyledNav>
-        <BurgerBtn onClick={(): void => { }} />
+        <BurgerBtn onClick={(): void => setIsSideBarOpen(!isSideBarOpen)} />
         <StyledLink to="/" icon={logoImage} />
         <NavActionWrapper>
           <SearchFieldWrapper>
