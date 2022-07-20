@@ -6,6 +6,7 @@ import Footer from "./components/Footer/Footer";
 import GlobalStyle from "./GlobalStyle";
 import SideBar from "./components/SideBar/SideBar";
 import SideBarContext from "./context/SideBarContext";
+import Home from "./pages/home/Home";
 
 const App: React.FC = () => {
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
@@ -19,7 +20,7 @@ const App: React.FC = () => {
         </SideBarContext.Provider>
         <PageContent>
           <Routes>
-            <Route path="/" element={<div>home page</div>} />
+            <Route path="/" element={<Home />} />
             <Route path="/cart" element={<div>shopping cart</div>} />
             <Route path="/wishlist" element={<div>wishlist</div>} />
             <Route path="/category" element={<div>category page</div>} />
