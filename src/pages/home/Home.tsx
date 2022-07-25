@@ -8,7 +8,8 @@ import slide3 from "../../assets/bg/bg-3.jpg";
 import slide4 from "../../assets/bg/bg-4.jpg";
 import slide5 from "../../assets/bg/bg-5.jpg";
 import slide6 from "../../assets/bg/bg-6.jpg";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import SearchContext from "../../context/SearchContext";
 import { Link } from "react-router-dom";
 import Categories from "../../components/Categories/Categories";
 import CategoryItem from "../../components/Categories/CategoryItem";
@@ -109,6 +110,8 @@ const Arrow = styled.div<{ left?: boolean }>`
 const Home: React.FC = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [categoryData, setCategoryData] = useState<string[]>();
+    const { value } = useContext(SearchContext);
+    console.log('search value', value);
 
     const prevHandler = () => {
         setCurrentSlide(

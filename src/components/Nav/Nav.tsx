@@ -17,6 +17,7 @@ import searchIcon from "../../assets/icons/icon-search.svg";
 import heartIcon from "../../assets/icons/icon-heart-empty.svg";
 import bagIcon from "../../assets/icons/icon-bag-empty.svg";
 import SideBarContext from "../../context/SideBarContext";
+import SearchContext from "../../context/SearchContext";
 
 const StyledNav = styled.header`
   width: 100%;
@@ -124,6 +125,10 @@ const CategoryLink = styled(Link)`
 
 const Nav: React.FC = () => {
   const { isSideBarOpen, setIsSideBarOpen } = useContext(SideBarContext);
+  const { value, setValue } = useContext(SearchContext);
+  const onChangeHandler = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(evt.target.value);
+  };
 
   return (
     <>
@@ -132,7 +137,7 @@ const Nav: React.FC = () => {
         <StyledLink to="/" icon={logoImage} />
         <NavActionWrapper>
           <SearchFieldWrapper>
-            <SearchField type="text" />
+            <SearchField type="text" onChange={onChangeHandler} />
           </SearchFieldWrapper>
           <StyledLink as="div" onClick={(): void => { }} icon={userIcon} />
           <StyledLink to="/wishlist" icon={heartIcon} />
