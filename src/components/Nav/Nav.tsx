@@ -57,7 +57,6 @@ const StyledLink = styled(Link) <{ icon: string }>`
   background: url(${(props) => props && props.icon}) center/contain no-repeat;
 `
 
-
 const CartLink = styled(StyledLink)`
   position: relative;
   span {
