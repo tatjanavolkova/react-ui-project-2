@@ -16,6 +16,7 @@ const ItemWrapper = styled(Link)`
   text-align: left;
   font-size: ${fontSizes.sm};
   line-height: 1.5rem;
+  
   ${devices.tablet} {
     width: calc(33% - 0.5rem);
   }

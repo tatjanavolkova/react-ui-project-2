@@ -57,6 +57,22 @@ const StyledLink = styled(Link) <{ icon: string }>`
   background: url(${(props) => props && props.icon}) center/contain no-repeat;
 `
 
+
+const CartLink = styled(StyledLink)`
+  position: relative;
+  span {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    position: absolute;
+    top: 0.8rem;
+    right: 0.5rem;
+    text-align: center;
+    position: absolute;
+    color: ${colors.bg};
+  }
+`;
+
 const SearchFieldWrapper = styled.div`
   position: relative;
   min-width: 2rem;
