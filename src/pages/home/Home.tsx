@@ -110,7 +110,6 @@ const Arrow = styled.div<{ left?: boolean }>`
 
 const Home: React.FC = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
-    // const [categoryData, setCategoryData] = useState<string[]>();
     const { categories, setCategories } = useContext(DataContext);
 
     const { value } = useContext(SearchContext);
