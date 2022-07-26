@@ -13,6 +13,7 @@ import SearchContext from "../../context/SearchContext";
 import { Link } from "react-router-dom";
 import Categories from "../../components/Categories/Categories";
 import CategoryItem from "../../components/Categories/CategoryItem";
+import DataContext from "../../context/DataContext";
 
 const sliderData = [
     {
@@ -109,7 +110,9 @@ const Arrow = styled.div<{ left?: boolean }>`
 
 const Home: React.FC = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
-    const [categoryData, setCategoryData] = useState<string[]>();
+    // const [categoryData, setCategoryData] = useState<string[]>();
+    const { categories, setCategories } = useContext(DataContext);
+
     const { value } = useContext(SearchContext);
     console.log('search value', value);
 
@@ -128,7 +131,7 @@ const Home: React.FC = () => {
     useEffect(() => {
         fetch("https://dummyjson.com/products/categories")
             .then((res) => res.json())
-            .then((data) => setCategoryData(data));
+            .then((data) => setCategories(data));
     }, []);
 
     return (
@@ -154,9 +157,9 @@ const Home: React.FC = () => {
                 </ButtonWrapper>
             </SliderWrapper>
             <Categories>
-                {categoryData ? (
+                {categories ? (
                     <>
-                        {categoryData.map((category: string, index) => {
+                        {categories.map((category: string, index) => {
                             return <CategoryItem key={index} category={category} />;
                         })}
                     </>

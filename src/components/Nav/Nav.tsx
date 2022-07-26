@@ -18,6 +18,7 @@ import heartIcon from "../../assets/icons/icon-heart-empty.svg";
 import bagIcon from "../../assets/icons/icon-bag-empty.svg";
 import SideBarContext from "../../context/SideBarContext";
 import SearchContext from "../../context/SearchContext";
+import DataContext from "../../context/DataContext";
 
 const StyledNav = styled.header`
   width: 100%;
@@ -141,6 +142,8 @@ const CategoryLink = styled(Link)`
 const Nav: React.FC = () => {
   const { isSideBarOpen, setIsSideBarOpen } = useContext(SideBarContext);
   const { value, setValue } = useContext(SearchContext);
+  const { categories } = useContext(DataContext);
+  //search 
   const onChangeHandler = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setValue(evt.target.value);
   };
@@ -154,18 +157,25 @@ const Nav: React.FC = () => {
           <SearchFieldWrapper>
             <SearchField type="text" onChange={onChangeHandler} />
           </SearchFieldWrapper>
-          <StyledLink as="div" onClick={(): void => { }} icon={userIcon} />
+          <StyledLink to="/auth" onClick={(): void => { }} icon={userIcon} />
           <StyledLink to="/wishlist" icon={heartIcon} />
           <StyledLink to="/cart" icon={bagIcon} />
         </NavActionWrapper>
       </StyledNav>
       <CategoryMenu>
-        <CategoryLink to="/">categoryname</CategoryLink>
-        <CategoryLink to="/">categoryname</CategoryLink>
-        <CategoryLink to="/">categoryname</CategoryLink>
-        <CategoryLink to="/">categoryname</CategoryLink>
-        <CategoryLink to="/">categoryname</CategoryLink>
-        <CategoryLink to="/">categoryname</CategoryLink>
+        {categories ? (
+          <>
+            {categories.slice(0, 6).map((category: string, index) => {
+              return (
+                <CategoryLink key={index} to={`/${category}`}>
+                  {category}
+                </CategoryLink>
+              );
+            })}
+          </>
+        ) : (
+          <div>loading ... </div>
+        )}
       </CategoryMenu>
     </>
   );
