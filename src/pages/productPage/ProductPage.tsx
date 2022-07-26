@@ -38,9 +38,9 @@ const Arrow = styled.div<{ left?: boolean }>`
   width: 2rem;
   height: 2rem;
   ${(props) =>
-        props &&
-        props.left &&
-        `
+    props &&
+    props.left &&
+    `
     left: 1rem;
     background: url(${leftIcon}) rgba(249, 247, 247, 0.5) center/contain no-repeat;
     right: unset;
@@ -73,58 +73,58 @@ const Description = styled.div`
 `;
 
 const ProductPage: React.FC = () => {
-    const { productId } = useParams();
-    const [currentImage, setCurrentImage] = useState(0);
-    const { cartValue, setCartValue } = useContext(CartContext);
+  const { productId } = useParams();
+  const [currentImage, setCurrentImage] = useState(0);
+  const { cartValue, setCartValue } = useContext(CartContext);
 
-    const { data } = useQuery("categoryData", () =>
-        fetch(`https://dummyjson.com/products/${productId}`).then((res) =>
-            res.json()
-        )
-    );
+  const { data } = useQuery("categoryData", () =>
+    fetch(`https://dummyjson.com/products/${productId}`).then((res) =>
+      res.json()
+    )
+  );
 
-    const prevHandler = () => {
-        data &&
-            setCurrentImage(
-                currentImage > 0 ? currentImage - 1 : data.images.length - 1
-            );
-    };
+  const prevHandler = () => {
+    data &&
+      setCurrentImage(
+        currentImage > 0 ? currentImage - 1 : data.images.length - 1
+      );
+  };
 
-    const nextHandler = () => {
-        data &&
-            setCurrentImage(
-                currentImage === data.images.length - 1 ? 0 : currentImage + 1
-            );
-    };
+  const nextHandler = () => {
+    data &&
+      setCurrentImage(
+        currentImage === data.images.length - 1 ? 0 : currentImage + 1
+      );
+  };
 
-    const addToCart = (product: productInterface) => {
-        !cartValue.find((item) => item.id === product.id) &&
-            setCartValue([...cartValue, product]);
-    };
+  const addToCart = (product: productInterface) => {
+    !cartValue.find((item) => item.id === product.id) &&
+      setCartValue([...cartValue, product]);
+  };
 
-    return (
-        <ProductWrapper>
-            {data ? (
-                <>
-                    <ProductImage bg={data.images[currentImage]}>
-                        <Arrow left onClick={prevHandler} />
-                        <Arrow onClick={nextHandler} />
-                    </ProductImage>
-                    <ProductInfo>
-                        <p>{data.title}</p>
-                        <Price>${data.price}</Price>
-                        <AddToCart onClick={() => addToCart(data)}>Add to cart</AddToCart>
-                    </ProductInfo>
-                    <Description>
-                        {data.description} {data.description} {data.description}{" "}
-                        {data.description}{" "}
-                    </Description>
-                </>
-            ) : (
-                <div>Loading...</div>
-            )}
-        </ProductWrapper>
-    );
+  return (
+    <ProductWrapper>
+      {data ? (
+        <>
+          <ProductImage bg={data.images[currentImage]}>
+            <Arrow left onClick={prevHandler} />
+            <Arrow onClick={nextHandler} />
+          </ProductImage>
+          <ProductInfo>
+            <p>{data.title}</p>
+            <Price>${data.price}</Price>
+            <AddToCart onClick={() => addToCart(data)}>Add to cart</AddToCart>
+          </ProductInfo>
+          <Description>
+            {data.description} {data.description} {data.description}{" "}
+            {data.description}{" "}
+          </Description>
+        </>
+      ) : (
+        <div>Loading...</div>
+      )}
+    </ProductWrapper>
+  );
 };
 
 export default ProductPage;
